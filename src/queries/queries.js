@@ -1,5 +1,7 @@
+// Import the PostgreSQL client
 const { Client } = require('pg');
 
+// Configure the PostgreSQL connection
 const connection = new Client({
   host: 'localhost',
   user: 'postgres',
@@ -7,12 +9,15 @@ const connection = new Client({
   database: 'employee_tracker_db'
 });
 
+// Connect to the PostgreSQL database
 connection.connect((err) => {
   if (err) throw err;
   console.log('Connected to PostgreSQL!');
 });
 
+// Export the database query functions
 module.exports = {
+  // Get all departments
   getDepartments: function() {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM department', (err, res) => {
@@ -22,6 +27,7 @@ module.exports = {
     });
   },
 
+  // Get all roles
   getRoles: function() {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM role', (err, res) => {
@@ -31,6 +37,7 @@ module.exports = {
     });
   },
 
+  // Get all employees along with their role, department, and manager
   getEmployees: function() {
     return new Promise((resolve, reject) => {
       const query = `
@@ -47,6 +54,7 @@ module.exports = {
     });
   },
 
+  // Add a new department
   addDepartment: function(name) {
     return new Promise((resolve, reject) => {
       connection.query('INSERT INTO department (name) VALUES ($1)', [name], (err, res) => {
@@ -56,6 +64,7 @@ module.exports = {
     });
   },
 
+  // Add a new role
   addRole: function(title, salary, department_id) {
     return new Promise((resolve, reject) => {
       connection.query('INSERT INTO role (title, salary, department_id) VALUES ($1, $2, $3)', [title, salary, department_id], (err, res) => {
@@ -65,6 +74,7 @@ module.exports = {
     });
   },
 
+  // Add a new employee
   addEmployee: function(first_name, last_name, role_id, manager_id) {
     return new Promise((resolve, reject) => {
         const text = 'INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES($1, $2, $3, $4) RETURNING *';
@@ -80,6 +90,7 @@ module.exports = {
     });
 },
 
+  // Update an employee's role
   updateEmployeeRole: function(employee_id, role_id) {
     return new Promise((resolve, reject) => {
       connection.query('UPDATE employee SET role_id = $1 WHERE id = $2', [role_id, employee_id], (err, res) => {

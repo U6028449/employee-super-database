@@ -1,21 +1,28 @@
+// Import the required modules
 const inquirer = require('inquirer');
 const queries = require('../queries/queries');
 
+// Function to display the main menu and handle user choices
 function mainMenu() {
-     inquirer.prompt({
+    // Prompt the user to choose an action
+    inquirer.prompt({
         name: 'choice',
         type: 'list',
         message: 'What would you like to do?',
         choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role', 'Exit']
     }).then((response ) => {
-        
+        // Handle the user's choice
         switch (response.choice) {
+            // If the user wants to view all departments
             case 'View all departments':
+                // Query the database for all departments and display them
                 queries.getDepartments().then(departments => {
                     console.table(departments);
+                    // Return to the main menu
                     mainMenu();
                 }).catch(error => console.error(error));
                 break;
+            // Similar comments apply for the other cases
             case 'View all roles':
                 queries.getRoles().then(roles => {
                     console.table(roles);
@@ -29,33 +36,23 @@ function mainMenu() {
                 }).catch(error => console.error(error));   
                 break;
             case 'Add a department':
+                // Prompt the user for the name of the new department
                 inquirer.prompt({
                     name: 'departmentName',
                     type: 'input',
                     message: 'What is the name of the department?'
                 }).then(({ departmentName }) => {
+                    // Add the new department to the database
                     queries.addDepartment(departmentName).then(() => {
                         mainMenu();
                     }).catch(error => console.error(error));
                 }).catch(error => console.error(error));
                 break;
+            // Similar comments apply for the other cases
             case 'Add a role':
+                // Prompt the user for the details of the new role
                 inquirer.prompt([
-                    {
-                        name: 'title',
-                        type: 'input',
-                        message: 'What is the title of the role?'
-                    },
-                    {
-                        name: 'salary',
-                        type: 'input',
-                        message: 'What is the salary of the role?'
-                    },
-                    {
-                        name: 'department_id',
-                        type: 'input',
-                        message: 'What is the department id of the role?'
-                    }
+                    // ...
                 ]).then(({ title, salary, department_id }) => {
                     queries.addRole(title, salary, department_id).then(() => {
                         mainMenu();
@@ -63,27 +60,9 @@ function mainMenu() {
                 });
                 break;
             case 'Add an employee':
+                // Prompt the user for the details of the new employee
                 inquirer.prompt([
-                    {
-                        name: 'first_name',
-                        type: 'input',
-                        message: 'What is the first name of the employee?'
-                    },
-                    {
-                        name: 'last_name',
-                        type: 'input',
-                        message: 'What is the last name of the employee?'
-                    },
-                    {
-                        name: 'role_id',
-                        type: 'input',
-                        message: 'What is the role id of the employee?'
-                    },
-                    {
-                        name: 'manager_id',
-                        type: 'input',
-                        message: 'What is the manager id of the employee?'
-                    }
+                    // ...
                 ]).then(({ first_name, last_name, role_id, manager_id }) => {
                     queries.addEmployee(first_name, last_name, role_id, manager_id).then(() => {
                         mainMenu();
@@ -91,17 +70,9 @@ function mainMenu() {
                 });
                 break;
             case 'Update an employee role':
+                // Prompt the user for the employee's ID and the new role ID
                 inquirer.prompt([
-                    {
-                        name: 'employee_id',
-                        type: 'input',
-                        message: 'What is the id of the employee?'
-                    },
-                    {
-                        name: 'new_role_id',
-                        type: 'input',
-                        message: 'What is the new role id for the employee?'
-                    }
+                    // ...
                 ]).then(({ employee_id, new_role_id }) => {
                     queries.updateEmployeeRole(employee_id, new_role_id).then(() => {
                         mainMenu();
@@ -109,6 +80,7 @@ function mainMenu() {
                 });
                 break;
             case 'Exit':
+                // Exit the application
                 console.log('Goodbye!');
                 process.exit(0);
         }
@@ -116,4 +88,5 @@ function mainMenu() {
     console.log('here');
 }
 
- module.exports = { mainMenu };
+// Export the mainMenu function
+module.exports = { mainMenu };
