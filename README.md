@@ -1,91 +1,47 @@
-# 12 SQL: Employee Tracker
 
-## Your Task
+# employee-super-database
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Developers frequently have to create interfaces that allow non-developers to easily view and interact with information stored in databases. These interfaces are called **content management systems (CMS)**. Your assignment this week is to build a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and PostgreSQL.
+## Description
 
-Because this Challenge will require the use of the `Inquirer` package, ensure that you install and use Inquirer version 8.2.4. To do so, use the following command in your project folder: `npm i inquirer@8.2.4`.
+a command line interface application for managing, viewing, and updating a company employee database.
 
-Because this application won’t be deployed, you’ll also need to create a walkthrough video that demonstrates its functionality and all of the following acceptance criteria being met. You’ll need to submit a link to the video and add it to the README of your project.
+## Table of Contents
 
+* [Installation](#installation)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Links](#Links)
+* [License](#license)
 
+* [Questions](#questions)
 
+## Installation
 
-## Grading Requirements
+please follow the instructions for creating a local database using psql -U postgres. when prompted for your password please enter your psql postgres password to connect to the DB. Once you have connected to your local DB plaes navigat to the utils directory and run the terminal command of node index.js. this will bring up the interactive terminal for you to interact with the DB. Simply follow the command prompts to view and update your DB accordingly
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+## Usage
 
-This Challenge is graded based on the following criteria:
+please use wisely
 
-### Deliverables: 10%
+## Contributing
 
-* Your GitHub repository containing your application code.
+if you wish to contribute please contact me on github
 
-### Walkthrough Video: 27%
+## Tests
 
-* A walkthrough video that demonstrates the functionality of the employee tracker must be submitted, and a link to the video should be included in your README file.
+N/A
 
-* The walkthrough video must show all of the technical acceptance criteria being met.
+## Links 
+https://drive.google.com/file/d/1HFEHbqsG_j5dgTAAU89C1gYJsHqQ92Z0/view
+assets\Screenshot 2024-05-23 200116.png
 
-* The walkthrough video must demonstrate how a user would invoke the application from the command line.
+## License
+    
+    This project is licensed under the MIT license.
 
-* The walkthrough video must demonstrate a functional menu with the options outlined in the acceptance criteria.
+## Questions
 
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the preceding acceptance criteria plus the following:
-
-  * Uses the [Inquirer package](https://www.npmjs.com/package/inquirer/v/8.2.4).
-
-  * Uses the [pg package](https://www.npmjs.com/package/pg) to connect to a PostgreSQL database.
-
-* Follows the table schema outlined in the Challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains a high-quality README with description and a link to a walkthrough video.
-
-### Application Quality 10%
-
-* The application user experience is intuitive and easy to navigate.
-
-### Bonus
-
-Fulfilling any of the following can add up to 20 points to your grade. Note that the highest grade you can achieve is still 100:
-
-* Application allows users to update employee managers (2 points).
-
-* Application allows users to view employees by manager (2 points).
-
-* Application allows users to view employees by department (2 points).
-
-* Application allows users to delete departments, roles, and employees (2 points for each).
-
-* Application allows users to view the total utilized budget of a department&mdash;in other words, the combined salaries of all employees in that department (8 points).
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* A walkthrough video demonstrating the functionality of the application.
-
-* The URL of the GitHub repository, with a unique name and a README describing the project.
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+If you have any questions about the repo, open an issue or contact me directly at harry.potter@hogwarts.com. You can find more of my work at [U6028449](https://github.com/U6028449/).
+  
