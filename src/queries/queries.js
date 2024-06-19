@@ -54,15 +54,15 @@ module.exports = {
     });
   },
 
-  // Add a new department
-  addDepartment: function(name) {
-    return new Promise((resolve, reject) => {
-      connection.query('INSERT INTO department (name) VALUES ($1)', [name], (err, res) => {
-        if (err) reject(err);
-        resolve(res.rows);
-      });
+// Add a new department
+addDepartment: function(name) {
+  return new Promise((resolve, reject) => {
+    connection.query('INSERT INTO department (name) VALUES ($1) RETURNING id', [name], (err, res) => {
+      if (err) reject(err);
+      else resolve(res.rows[0].id); 
     });
-  },
+  });
+},
 
   // Add a new role
   addRole: function(title, salary, department_id) {
@@ -90,13 +90,17 @@ module.exports = {
     });
 },
 
-  // Update an employee's role
-  updateEmployeeRole: function(employee_id, role_id) {
-    return new Promise((resolve, reject) => {
-      connection.query('UPDATE employee SET role_id = $1 WHERE id = $2', [role_id, employee_id], (err, res) => {
-        if (err) reject(err);
-        resolve(res.rows);
-      });
-    });
-  }
-};
+ // Update an employee's role
+updateEmployeeRole: function(employee_id, role_id) {
+  return new Promise((resolve, reject) => {
+    connection.query('UPDATE employee SET role_id = $1 WHERE id = $2', [role_id, employee_id], (err) => {
+      if (err) reject(err);
+      else {
+        this.getEmployees().then(updatedEmployees => {
+          console.log('Employee role updated successfully!');
+          console.table(updatedEmployees);
+        resolve(updatedEmployees);
+      }).catch(fetchErr => reject(fetchErr));
+    }});
+  });
+}}

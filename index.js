@@ -1,5 +1,5 @@
 // Import the mainMenu function from the inquirer module
-const { mainMenu } = require('./inquirer');
+const { mainMenu } = require('./src/utils/inquirer');
 
 // Define an asynchronous function to run the application
 async function run() {
